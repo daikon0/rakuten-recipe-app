@@ -1,7 +1,7 @@
 <template>
   <div class="category">
     <h2>HELLO</h2>
-    <ranking/>
+    <Ranking/>
   </div>
 </template>
 

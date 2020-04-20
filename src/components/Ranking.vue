@@ -1,8 +1,9 @@
 <template>
-  <div class="hello">
+  <div class=recipe>
+    <h2>aaa</h2>
     <ul>
-      <li v-for="category in categories" :key="category.categoryId">
-        <router-link :to="{name:'category', params:{id:category.categoryId}}">{{ category.categoryName }}</router-link>
+      <li v-for="recipe in recipes" :key="recipe.recipeId">
+        <img :src="recipe.foodImageUrl"> {{ recipe.recipeTitle }}
       </li>
     </ul>
   </div>
@@ -11,14 +12,14 @@
 <script>
 const axios = require('axios')
 export default {
-  name: 'HelloWorld',
+  name: 'Ranking',
   data: () => ({
-    categories: []
+    recipes: []
   }),
   created: async function () {
     try {
-      const category = await axios.get('https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20170426?applicationId=1089766391646982288&categoryType=large')
-      this.categories = category.data.result.large
+      const recipe = await axios.get(`https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?applicationId=1089766391646982288&categoryId=${this.$route.params.id}`)
+      this.recipes = recipe.data.result
     } catch (err) {
       alert(JSON.stringify(err))
     }
