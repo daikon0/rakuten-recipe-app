@@ -15,7 +15,7 @@ export default {
   }),
   created: async function () {
     try {
-      const category = await axios.get('https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20170426?applicationId=1089766391646982288&categoryType=large')
+      const category = await axios.get(`https://app.rakuten.co.jp/services/api/Recipe/CategoryList/20170426?applicationId=${process.env.VUE_APP_RAKUTEN}&categoryType=large`)
       this.categories = category.data.result.large
     } catch (err) {
       alert(JSON.stringify(err))

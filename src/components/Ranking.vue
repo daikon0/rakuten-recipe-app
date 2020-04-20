@@ -18,7 +18,7 @@ export default {
   }),
   created: async function () {
     try {
-      const recipe = await axios.get(`https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?applicationId=1089766391646982288&categoryId=${this.$route.params.id}`)
+      const recipe = await axios.get(`https://app.rakuten.co.jp/services/api/Recipe/CategoryRanking/20170426?applicationId=${process.env.VUE_APP_RAKUTEN}&categoryId=${this.$route.params.id}`)
       this.recipes = recipe.data.result
     } catch (err) {
       alert(JSON.stringify(err))
